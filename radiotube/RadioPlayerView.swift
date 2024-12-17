@@ -3,6 +3,7 @@ import SwiftUI
 struct RadioPlayerView: View {
     @ObservedObject private var viewModel = RadioViewModel()
     @State private var showMoreScreen = false
+    @State private var showTimerView = false // Add state for TimerView
 
     var body: some View {
         ZStack {

@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct MoreScreenView: View {
+    @StateObject private var radioViewModel = RadioViewModel() // Create an instance
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -39,6 +41,13 @@ struct MoreScreenView: View {
                         MoreItemRow(title: "Share", icon: "square.and.arrow.up") {
                             shareApp()
                         }
+
+                        // Navigation Link to TimerView
+                        NavigationLink(destination: TimerView(radioViewModel: radioViewModel)) {
+                            MoreItemRow(title: "Timer", icon: "timer") {
+                                // No additional action needed, handled by NavigationLink
+                            }
+                        }
                     }
                     .listStyle(InsetGroupedListStyle())
                     .background(Color.clear)
@@ -71,11 +80,5 @@ struct MoreScreenView: View {
         if let topController = UIApplication.shared.windows.first?.rootViewController {
             topController.present(activityVC, animated: true, completion: nil)
         }
-    }
-}
-
-struct MoreScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        MoreScreenView()
     }
 }
